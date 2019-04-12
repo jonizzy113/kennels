@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 export default class LocationList extends Component {
     render() {
         return (
-            <article> 
+            <article className="content"> 
                 <h2>Locations</h2>
                 {
                     this.props.locations.map(location =>
