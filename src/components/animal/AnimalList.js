@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import {  Link } from "react-router-dom"
 import dog from "./DogIcon.svg"
 import "./animal.css"
+
 
 
 export default class AnimalList extends Component {
@@ -19,6 +21,7 @@ export default class AnimalList extends Component {
                                     onClick={() => this.props.deleteItem(animal.id)}
                                     className="card-link">Delete</button>
                             </h5>
+                        <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
                         </div>
                     </div>
                     )
