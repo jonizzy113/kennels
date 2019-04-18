@@ -5,6 +5,17 @@ import "./employee.css"
 export default class EmployeeList extends Component {
     render() {
         return (
+            <React.Fragment>
+            <div className="employeeButton content">
+                    <button type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                            this.props.history.push("/employees/new")
+                        }
+                        }>
+                        New Employee
+                    </button>
+                </div>
             <article className="content employees">
                 <h1>Employees</h1>
                 {
@@ -19,6 +30,7 @@ export default class EmployeeList extends Component {
                     )
                 }
             </article>
+            </React.Fragment>
             );
         }
 }

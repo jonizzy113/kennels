@@ -8,6 +8,9 @@ import AnimalDetail from "./animal/AnimalDetail"
 import ApiManager from "../modules/ApiManager"
 import EmployeeDetail from "./employee/EmployeeDetail"
 import LocationDetail from "./locations/LocationDetail"
+import AnimalForm from "./animal/AnimalForm"
+import OwnersForm from "./owners/OwnersForm"
+import EmployeeForm from "./employee/EmployeeForm"
 import { withRouter } from 'react-router'
 
 
@@ -26,11 +29,11 @@ class ApplicationViews extends Component {
 
         ApiManager.getAll("animals")
             .then(animals => newState.animals = animals)
-            ApiManager.getAll("owners")
+            .then(()=> ApiManager.getAll("owners"))
             .then(owners => newState.owners = owners)
-            ApiManager.getAll("locations")
+            .then(() =>ApiManager.getAll("locations"))
             .then(locations => newState.locations = locations)
-            ApiManager.getAll("employees")
+            .then(() =>ApiManager.getAll("employees"))
             .then(employees => newState.employees = employees)
             .then(() => this.setState(newState))
     }
@@ -49,6 +52,30 @@ class ApplicationViews extends Component {
             }
         )
     }
+        addAnimal = animal =>
+            ApiManager.post(animal)
+            .then(() => ApiManager.getAll("animals"))
+            .then(animals =>
+                this.setState({
+                    animals: animals
+                })
+            )
+        addEmployee = employee =>
+            ApiManager.postEmployee(employee)
+            .then(() => ApiManager.getAll("employees"))
+            .then(employees =>
+                this.setState({
+                    employees: employees
+                })
+            )
+        addOwner = owner =>
+            ApiManager.post(owner)
+            .then(() => ApiManager.getAll("owners"))
+            .then(owners =>
+                this.setState({
+                    owners: owners
+                })
+            )
 
     render() {
         return (
@@ -59,15 +86,15 @@ class ApplicationViews extends Component {
                 }} />
                 <Route exact path="/animals" render={(props) => {
                     return <AnimalList deleteItem={this.deleteItem}
-                    animals={this.state.animals} />
+                    animals={this.state.animals} {...props}/>
                 }} />
                 <Route exact path="/employees" render={(props) => {
                     return <EmployeeList deleteItem={this.deleteItem}
-                    employees={this.state.employees} />
+                    employees={this.state.employees} {...props}/>
                 }} />
                 <Route exact path="/owners" render={(props) => {
                     return <OwnersList deleteItem={this.deleteItem}
-                    owners={this.state.owners} />
+                    owners={this.state.owners} {...props}/>
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     // Find the animal with the id of the route parameter
@@ -82,7 +109,7 @@ class ApplicationViews extends Component {
 
                     return <AnimalDetail animal={animal}
                         deleteItem={this.deleteItem} />
-                }} />
+                }}/>
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
                     let employee = this.state.employees.find(employee =>
                         employee.id === parseInt(props.match.params.employeeId)
@@ -94,7 +121,7 @@ class ApplicationViews extends Component {
 
                     return <EmployeeDetail employee={employee}
                         deleteItem={this.deleteItem} />
-                }} />
+                }}/>
                 <Route path="/locations/:locationId(\d+)" render={(props) => {
                     let location = this.state.locations.find(location =>
                         location.id === parseInt(props.match.params.locationId)
@@ -106,7 +133,20 @@ class ApplicationViews extends Component {
 
                     return <LocationDetail location={location}
                         deleteItem={this.deleteItem} />
-                }} />
+                }}/>
+                <Route path="/animals/new" render={(props) => {
+                    return <AnimalForm {...props}
+                        addAnimal={this.addAnimal}
+                        employees={this.state.employees} />
+                }}/>
+                <Route path="/employees/new" render={(props) => {
+                    return <EmployeeForm {...props}
+                        addEmployee={this.addEmployee}/>
+                }}/>
+                <Route path="/owners/new" render={(props) => {
+                    return <OwnersForm {...props}
+                        addOwner={this.addOwner} />
+                }}/>
             </React.Fragment>
         )
     }

@@ -1,7 +1,9 @@
 {
   "employees": [
-        { "id": 1, "name": "Jessica Younker" },
-
+    {
+      "id": 1,
+      "name": "Jessica Younker"
+    },
     {
       "id": 2,
       "name": "Jordan Nelson"
@@ -13,6 +15,10 @@
     {
       "id": 4,
       "name": "Blaise Roberts"
+    },
+    {
+      "name": "Jameka",
+      "id": 5
     }
   ],
   "locations": [
@@ -30,27 +36,57 @@
   "animals": [
     {
       "id": 1,
-      "name": "Doodles"
+      "name": "Doodles",
+      "breed": "St.Bernard",
+      "employeeId": 3
     },
     {
       "id": 2,
-      "name": "Jack"
+      "name": "Jack",
+      "breed": "Lab",
+      "employeeId": 1
     },
     {
       "id": 3,
-      "name": "Angus"
+      "name": "Angus",
+      "breed": "Golden Retriver",
+      "employeeId": 2
     },
     {
       "id": 4,
-      "name": "Henley"
+      "name": "Henley",
+      "breed": "Husky",
+      "employeeId": 1
     },
     {
       "id": 5,
-      "name": "Derkins"
+      "name": "Derkins",
+      "breed": "Lab",
+      "employeeId": 4
     },
     {
       "id": 6,
-      "name": "Checkers"
+      "name": "Checkers",
+      "breed": "Husky",
+      "employeeId": 3
+    },
+    {
+      "name": "Meag",
+      "breed": "Poodle",
+      "employeeId": 3,
+      "id": 7
+    },
+    {
+      "name": "Alex",
+      "breed": "Cocker Spaniel",
+      "employeeId": 1,
+      "id": 8
+    },
+    {
+      "name": "Jameka",
+      "breed": "Golden Doodle",
+      "employeeId": 4,
+      "id": 9
     }
   ],
   "owners": [
@@ -73,6 +109,16 @@
       "id": 4,
       "name": "Sam",
       "phoneNumber": "615-444-8888"
+    },
+    {
+      "name": "Alex",
+      "phoneNumber": "615-725-9364",
+      "id": 5
+    },
+    {
+      "name": "Jameka",
+      "phoneNumber": "615-245-4527",
+      "id": 6
     }
   ]
 }

@@ -8,8 +8,18 @@ import "./animal.css"
 export default class AnimalList extends Component {
     render() {
         return (
-            <article className="content animals">
-                <h2>Animals</h2>
+            <React.Fragment>
+                <div className="animalButton content">
+                    <button type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                            this.props.history.push("/animals/new")
+                        }
+                        }>
+                        Admit Animal
+                    </button>
+                </div>
+            <section className="content animals">
                 {
                     this.props.animals.map(animal =>
                     <div key={animal.id} className="card">
@@ -27,7 +37,8 @@ export default class AnimalList extends Component {
                     )
                 }
                 
-            </article>
+            </section>
+            </React.Fragment>
         )
     }
 }

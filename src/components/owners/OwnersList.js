@@ -4,6 +4,17 @@ import "./owner.css"
 export default class OwnersList extends Component {
     render() {
         return (
+        <React.Fragment>
+            <div className="ownerButton content">
+                    <button type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                            this.props.history.push("/owners/new")
+                        }
+                        }>
+                        New Owner
+                    </button>
+                </div>
             <article className="content owners">
                 <h1>Owners</h1>
                 {
@@ -17,6 +28,7 @@ export default class OwnersList extends Component {
                     )
                 }
             </article>
+        </React.Fragment>
         );
     }
 }
