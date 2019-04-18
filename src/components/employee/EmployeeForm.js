@@ -24,7 +24,7 @@ export default class AnimalForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <form className="ownerForm content">
+                <form className="employeeForm content">
                 <div className="form-group">
                 <label htmlFor="ownerName"> Employee Name</label>
                 <input

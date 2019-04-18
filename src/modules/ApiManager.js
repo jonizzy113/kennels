@@ -14,7 +14,7 @@ export default {
         })
             .then(r => r.json())
     },
-    post(newAnimal) {
+    postAnimal(newAnimal) {
         return fetch(`${remoteURL}/animals`, {
             method: "POST",
             headers: {
@@ -32,7 +32,7 @@ export default {
             body: JSON.stringify(newEmployee)
         }).then(data => data.json())
     },
-    post(newOwner) {
+    postOwner(newOwner) {
         return fetch(`${remoteURL}/owners`, {
             method: "POST",
             headers: {

@@ -53,7 +53,7 @@ class ApplicationViews extends Component {
         )
     }
         addAnimal = animal =>
-            ApiManager.post(animal)
+            ApiManager.postAnimal(animal)
             .then(() => ApiManager.getAll("animals"))
             .then(animals =>
                 this.setState({
@@ -69,7 +69,7 @@ class ApplicationViews extends Component {
                 })
             )
         addOwner = owner =>
-            ApiManager.post(owner)
+            ApiManager.postOwner(owner)
             .then(() => ApiManager.getAll("owners"))
             .then(owners =>
                 this.setState({
