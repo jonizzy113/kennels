@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from "react"
 import AnimalList from "./animal/AnimalList"
 import LocationList from "./locations/LocationList"
@@ -11,11 +11,14 @@ import LocationDetail from "./locations/LocationDetail"
 import AnimalForm from "./animal/AnimalForm"
 import OwnersForm from "./owners/OwnersForm"
 import EmployeeForm from "./employee/EmployeeForm"
+import Login from './authentication/login'
 import { withRouter } from 'react-router'
 
 
 
 class ApplicationViews extends Component {
+
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
     state = {
         owners: [],
@@ -81,16 +84,28 @@ class ApplicationViews extends Component {
         return (
             <React.Fragment>
                 <Route exact path="/" render={(props) => {
+                    if(this.isAuthenticated()) {
                     return <LocationList deleteItem={this.deleteItem}
                     locations={this.state.locations} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route exact path="/animals" render={(props) => {
+                    if(this.isAuthenticated()) {
                     return <AnimalList deleteItem={this.deleteItem}
                     animals={this.state.animals} {...props}/>
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route exact path="/employees" render={(props) => {
+                    if(this.isAuthenticated()) {
                     return <EmployeeList deleteItem={this.deleteItem}
                     employees={this.state.employees} {...props}/>
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route exact path="/owners" render={(props) => {
                     return <OwnersList deleteItem={this.deleteItem}
@@ -147,6 +162,7 @@ class ApplicationViews extends Component {
                     return <OwnersForm {...props}
                         addOwner={this.addOwner} />
                 }}/>
+                <Route path="/login" component={Login} />
             </React.Fragment>
         )
     }
